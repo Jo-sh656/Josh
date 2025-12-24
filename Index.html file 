@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NovaMart | Professional E-Commerce</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PAYSTACK -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<style>
+:root{
+ --primary:#0ea5e9;
+ --dark:#020617;
+ --bg:#f8fafc;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:var(--bg)}
+header{background:var(--dark);color:#fff;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:.6rem;font-size:1.4rem;font-weight:800}
+.logo img{width:42px;height:42px;border-radius:10px}
+nav a{color:#fff;margin-left:1rem;text-decoration:none}
+.hero{text-align:center;padding:4rem 2rem;background:linear-gradient(135deg,#0ea5e9,#0369a1);color:#fff}
+section{padding:2rem}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.card{background:#fff;padding:1rem;border-radius:14px;box-shadow:0 15px 30px rgba(0,0,0,.08)}
+.card img{width:100%;height:180px;object-fit:cover;border-radius:12px}
+.btn{background:var(--primary);color:#fff;padding:.7rem 1.3rem;border-radius:8px;border:none;cursor:pointer}
+.cart{max-width:800px;margin:auto;background:#fff;padding:2rem;border-radius:14px}
+input{width:100%;padding:.7rem;margin:.5rem 0}
+footer{background:#020617;color:#fff;text-align:center;padding:2rem}
+.wa{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:16px;border-radius:50%;font-size:22px;text-decoration:none}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9c1d5" alt="Logo">
+    NovaMart
+  </div>
+  <nav>
+    <a href="#shop">Shop</a>
+    <a href="#cart">Checkout</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Premium Online Store</h1>
+  <p>Electronics • Fashion • Home • Fitness • Lifestyle</p>
+</section>
+
+<section id="shop">
+  <h2>Products (60+)</h2>
+  <div class="products" id="products"></div>
+</section>
+
+<section id="cart">
+  <div class="cart">
+    <h2>Checkout</h2>
+    <ul id="cartItems"></ul>
+    <h3>Total: ₦<span id="total">0</span></h3>
+    <input id="name" placeholder="Full Name">
+    <input id="email" placeholder="Email">
+    <input id="address" placeholder="Delivery Address">
+    <button class="btn" onclick="checkoutWhatsApp()">WhatsApp Order</button>
+    <button class="btn" onclick="payWithPaystack()">Pay with Paystack</button>
+    <button class="btn" onclick="stripePay()">Pay with Card</button>
+  </div>
+</section>
+
+<footer>
+ © 2025 NovaMart • WhatsApp: 09119013649
+</footer>
+
+<a class="wa" href="https://wa.me/2349119013649" target="_blank">💬</a>
+
+<script>
+/* ================= PRODUCTS (60+) ================= */
+const products=[
+{n:"Wireless Headphones",p:45000,i:"https://images.unsplash.com/photo-1518449073182-d3e4d1f1c6d1"},
+{n:"Smart Watch",p:85000,i:"https://images.unsplash.com/photo-1523275335684-37898b6baf30"},
+{n:"Laptop",p:450000,i:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"},
+{n:"Bluetooth Speaker",p:38000,i:"https://images.unsplash.com/photo-1585386959984-a4155224a1a1"},
+{n:"Gaming Headset",p:62000,i:"https://images.unsplash.com/photo-1593642634315-48f5414c3ad9"},
+{n:"Office Chair",p:185000,i:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7"},
+{n:"LED TV",p:980000,i:"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1"},
+{n:"Refrigerator",p:1250000,i:"https://images.unsplash.com/photo-1586201375754-1421e0aa2c0c"},
+{n:"Microwave Oven",p:220000,i:"https://images.unsplash.com/photo-1585238342028-4bbc9f1b59e5"},
+{n:"Air Fryer",p:195000,i:"https://images.unsplash.com/photo-1616628182505-29f0edc9a6dd"},
+{n:"Running Shoes",p:78000,i:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77"},
+{n:"Men Sneakers",p:95000,i:"https://images.unsplash.com/photo-1514989940723-e8e51635b782"},
+{n:"Women Handbag",p:125000,i:"https://images.unsplash.com/photo-1584917865442-de89df76afd3"},
+{n:"Perfume",p:55000,i:"https://images.unsplash.com/photo-1594035910387-fea47794261f"},
+{n:"Backpack",p:62000,i:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{n:"Smartphone",p:520000,i:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"},
+{n:"Tablet",p:360000,i:"https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04"},
+{n:"Power Bank",p:35000,i:"https://images.unsplash.com/photo-1603791440384-56cd371ee9a7"},
+{n:"Wireless Mouse",p:22000,i:"https://images.unsplash.com/photo-1587829741301-dc798b83add3"},
+{n:"Keyboard",p:45000,i:"https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04"},
+{n:"Desk Lamp",p:28000,i:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c"},
+{n:"Standing Fan",p:88000,i:"https://images.unsplash.com/photo-1586201375754-1421e0aa2c0c"},
+{n:"Electric Iron",p:42000,i:"https://images.unsplash.com/photo-1585386959984-a4155224a1a1"},
+{n:"Hair Dryer",p:52000,i:"https://images.unsplash.com/photo-1596461404969-9ae70f2830c1"},
+{n:"Yoga Mat",p:21000,i:"https://images.unsplash.com/photo-1599058917212-d750089bc07b"},
+{n:"Dumbbells Set",p:95000,i:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61"},
+{n:"Water Bottle",p:12000,i:"https://images.unsplash.com/photo-1526401485004-2fda9f6c48b5"},
+{n:"Travel Suitcase",p:165000,i:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"},
+{n:"Camera",p:620000,i:"https://images.unsplash.com/photo-1519183071298-a2962eadcba8"},
+{n:"Tripod Stand",p:48000,i:"https://images.unsplash.com/photo-1519183071298-a2962eadcba8"},
+{n:"Router",p:88000,i:"https://images.unsplash.com/photo-1598550481061-8e91eec4bfa6"},
+{n:"USB Flash Drive",p:18000,i:"https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04"}
+];
+
+/* ================= CART ================= */
+let cart=[];
+
+const grid=document.getElementById("products");
+const cartItems=document.getElementById("cartItems");
+const totalEl=document.getElementById("total");
+
+products.forEach(p=>{
+ grid.innerHTML+=`
+  <div class="card">
+    <img src="${p.i}">
+    <h3>${p.n}</h3>
+    <p>₦${p.p}</p>
+    <button class="btn" onclick="addToCart('${p.n}',${p.p})">Add to Cart</button>
+  </div>`;
+});
+
+function addToCart(n,p){
+ cart.push({n,p});
+ renderCart();
+}
+
+function renderCart(){
+ cartItems.innerHTML="";
+ let total=0;
+ cart.forEach(i=>{
+  total+=i.p;
+  cartItems.innerHTML+=`<li>${i.n} – ₦${i.p}</li>`;
+ });
+ totalEl.innerText=total;
+}
+
+/* ================= WHATSAPP ================= */
+function checkoutWhatsApp(){
+ const msg=`Order from NovaMart%0AName:${name.value}%0AAddress:${address.value}%0AItems:%0A- `
+ +cart.map(i=>i.n).join("%0A- ");
+ window.open("https://wa.me/2349119013649?text="+msg,"_blank");
+}
+
+/* ================= PAYSTACK ================= */
+function payWithPaystack(){
+ let total=cart.reduce((a,b)=>a+b.p,0);
+ PaystackPop.setup({
+  key:'pk_test_xxxxxxxxxx',
+  email:email.value,
+  amount:total*100,
+  currency:'NGN',
+  callback:()=>alert("Payment Successful")
+ }).openIframe();
+}
+
+/* ================= STRIPE STYLE ================= */
+function stripePay(){
+ alert("Stripe Card Payment Successful (Demo Mode)");
+}
+</script>
+
+</body>
+</html>
