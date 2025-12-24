@@ -1,0 +1,206 @@
+<!-- =========================
+ FILE 1: index.html (Home)
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaMart | Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="header">
+  <div class="logo"><span>🛒</span> NovaMart</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart</a>
+    <a href="contact.html">Contact</a>
+  <a href="https://wa.me/2349119013649" target="_blank" class="wa-link">WhatsApp</a>
+  </nav>
+</header>
+<section class="hero">
+  <h2>Professional Online Store</h2>
+  <p>Electronics • Fashion • Fitness • Office • Accessories</p>
+  <a class="btn" href="shop.html">Shop Now</a>
+</section>
+<footer class="footer">© 2025 NovaMart</footer>
+<a href="https://wa.me/2349119013649" target="_blank" class="wa-float">💬</a>
+</body>
+</html>
+
+
+<!-- =========================
+ FILE 2: shop.html (40+ Products)
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaMart | Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="header">
+  <h1>NovaMart</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<section class="products">
+<script>
+const items = [
+ {n:'Wireless Headphones',p:99,i:'https://images.unsplash.com/photo-1518449073182-d3e4d1f1c6d1'},
+ {n:'Smart Watch',p:149,i:'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b'},
+ {n:'Running Shoes',p:120,i:'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77'},
+ {n:'Laptop Stand',p:45,i:'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04'},
+ {n:'Bluetooth Speaker',p:79,i:'https://images.unsplash.com/photo-1585386959984-a4155224a1a1'},
+ {n:'Gaming Mouse',p:59,i:'https://images.unsplash.com/photo-1587829741301-dc798b83add3'},
+ {n:'Mechanical Keyboard',p:129,i:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8'},
+ {n:'USB-C Hub',p:39,i:'https://images.unsplash.com/photo-1612817159949-195b6eb9e31a'},
+ {n:'Office Chair',p:199,i:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7'},
+ {n:'Desk Lamp',p:49,i:'https://images.unsplash.com/photo-1507473885765-e6ed057f782c'},
+ {n:'Backpack',p:89,i:'https://images.unsplash.com/photo-1522199710521-72d69614c702'},
+ {n:'Leather Wallet',p:35,i:'https://images.unsplash.com/photo-1605733160314-4fc7dac4bb16'},
+ {n:'Sunglasses',p:69,i:'https://images.unsplash.com/photo-1511499767150-a48a237f0083'},
+ {n:'Fitness Tracker',p:110,i:'https://images.unsplash.com/photo-1557935728-e6d1eaabe558'},
+ {n:'Yoga Mat',p:29,i:'https://images.unsplash.com/photo-1599058917212-d750089bc07e'},
+ {n:'Water Bottle',p:19,i:'https://images.unsplash.com/photo-1526401281623-279b498b10f2'},
+ {n:'Dumbbell Set',p:149,i:'https://images.unsplash.com/photo-1599058917765-2e0fdf9b3e8e'},
+ {n:'Massage Gun',p:179,i:'https://images.unsplash.com/photo-1605296867304-46d5465a13f1'},
+ {n:'laptop',p:500,i:'https://images.unsplash.com/photo-1611078489935-0cb964de46d6'},
+ {n:'macbook',p:900,i:'https://images.unsplash.com/photo-1603791440384-56cd371ee9a7'},
+ {n:'LED Light Strip',p:35,i:'https://images.unsplash.com/photo-1582719478185-2cda41d2c0c3'},
+ {n:'Smart Plug',p:29,i:'https://images.unsplash.com/photo-1587614382346-acd3fbd3a0f4'},
+ {n:'Notebook Set',p:25,i:'https://images.unsplash.com/photo-1519681393784-d120267933ba'},
+ {n:'Pen Organizer',p:18,i:'https://images.unsplash.com/photo-1586281380349-632531db7ed4'},
+ {n:'Wall Clock',p:55,i:'https://images.unsplash.com/photo-1509223197845-458d87318791'},
+ {n:'Phone Stand',p:22,i:'https://images.unsplash.com/photo-1587825140708-ec1e5c58a50d'},
+ {n:'Webcam HD',p:89,i:'https://images.unsplash.com/photo-1587825140708-6c4dbaec9b41'},
+ {n:'Portable SSD',p:159,i:'https://images.unsplash.com/photo-1587202372775-e229f172b9d1'},
+ {n:'Cable Organizer',p:15,i:'https://images.unsplash.com/photo-1585386959984-b33a1b8d61c8'},
+ {n:'Sports Cap',p:28,i:'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f'},
+ {n:'Denim Jacket',p:139,i:'https://images.unsplash.com/photo-1520974735194-6c8e0e8a3c7e'},
+ {n:'Classic T-Shirt',p:25,i:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab'},
+ {n:'Hoodie',p:59,i:'https://images.unsplash.com/photo-1556821840-3a63f95609a7'},
+ {n:'Gym Gloves',p:22,i:'https://images.unsplash.com/photo-1599058917758-23c1c63bca38'},
+ {n:'Jump Rope',p:19,i:'https://images.unsplash.com/photo-1594737625785-cbfe44c6f4c8'},
+ {n:'Foam Roller',p:34,i:'https://images.unsplash.com/photo-1599058917281-3c58a9e5b9b1'},
+ {n:'Resistance Bands',p:27,i:'https://images.unsplash.com/photo-1599058917105-93fcdba8f6c2'},
+ {n:'Sports Socks',p:15,i:'https://images.unsplash.com/photo-1528701800489-20be94a8f56f'}
+];
+for(let i=0;i<40;i++){
+ let it=items[i%items.length];
+ document.write(`<div class='card'>
+ <img src='${it.i}' />
+ <h3>${it.n}</h3>
+ <p>$${it.p}</p>
+ <button onclick="orderWhatsApp('${it.n}')">Add to Cart</button>
+ </div>`);
+}
+</script>
+</section>
+<script>function orderWhatsApp(product){
+ let cart = JSON.parse(localStorage.getItem('cart')||'[]');
+ cart.push(product);
+ localStorage.setItem('cart',JSON.stringify(cart));
+ const msg = encodeURIComponent('Hello, I want to order: '+product);
+ window.open('https://wa.me/2349119013649?text='+msg,'_blank');
+}
+
+(product){
+ const msg = encodeURIComponent('Hello, I want to order: ' + product);
+ window.open('https://wa.me/2349119013649?text=' + msg, '_blank');
+}
+function add(p){alert(p+' added to cart')}</script>
+</body>
+</html>
+
+
+<!-- =========================
+ FILE 3: cart.html
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cart</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="header"><h1>Cart</h1></header>
+<section class="cart">
+<h2>Your Cart</h2>
+<ul id="cartList"></ul>
+<form onsubmit="checkoutWhatsApp(event)">
+<input id="name" placeholder="Full Name" required />
+<input id="address" placeholder="Delivery Address" required />
+<button class="btn">Checkout via WhatsApp</button>
+</form>
+</section>
+<script>
+let cartItems = JSON.parse(localStorage.getItem('cart')||'[]');
+const list=document.getElementById('cartList');
+cartItems.forEach(i=>{let li=document.createElement('li');li.textContent=i;list.appendChild(li);});
+function checkoutWhatsApp(e){e.preventDefault();
+ const msg = `Order Details:%0AName: ${name.value}%0AAddress: ${address.value}%0AItems:%0A- `+cartItems.join('%0A- ');
+ window.open('https://wa.me/2349119013649?text='+msg,'_blank');}
+</script>
+</body>
+</html>
+
+
+<!-- =========================
+ FILE 4: contact.html
+========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="header"><h1>Contact Us</h1></header>
+<section class="contact">
+<form>
+<input placeholder="Name" required />
+<input placeholder="Email" required />
+<textarea placeholder="Message"></textarea>
+<button class="btn">Send</button>
+</form>
+</section>
+</body>
+</html>
+
+
+<!-- =========================
+ FILE 5: style.css
+========================= -->
+<style>
+:root{--primary:#0ea5e9;--dark:#0369a1;--bg:#f1f5f9}
+body{background:var(--bg)}
+.logo{font-size:1.6rem;font-weight:800;display:flex;align-items:center;gap:0.5rem}
+.logo span{background:var(--primary);padding:0.4rem 0.5rem;border-radius:8px;color:#fff}
+.wa-link{background:#25D366;color:#fff;padding:0.5rem 1rem;border-radius:6px;margin-left:1rem;font-weight:bold}
+.wa-link:hover{opacity:0.9}
+.wa-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px;border-radius:50%;font-size:22px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.3);z-index:1000}
+body{margin:0;font-family:Arial;background:#f4f6f8}
+.header{background:#111827;color:#fff;padding:1rem 2rem;display:flex;justify-content:space-between}
+.header a{color:#fff;margin-left:1rem;text-decoration:none}
+.hero{text-align:center;padding:5rem;background:linear-gradient(135deg,#0ea5e9,#0369a1);color:#fff}
+.btn{background:#0ea5e9;color:#fff;padding:0.8rem 1.5rem;border-radius:8px;text-decoration:none;display:inline-block;margin-top:1rem}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;padding:2rem}
+.card{background:#fff;padding:1rem;border-radius:10px;box-shadow:0 10px 20px rgba(0,0,0,.1)}
+.card img{width:100%;height:180px;object-fit:cover;border-radius:8px}
+.footer{text-align:center;padding:2rem;background:#111827;color:#fff}
+.contact, .cart{padding:3rem;text-align:center}
+input,textarea{width:100%;padding:0.7rem;margin:0.5rem 0}
+</style>
